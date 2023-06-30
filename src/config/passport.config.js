@@ -2,7 +2,6 @@ import passport from 'passport';
 import local from 'passport-local';
 import GithubStrategy from 'passport-github2';
 import userModel from '../dao/mongo/models/users.js';
-import userManager from '../dao/mongo/Managers/user.js';
 import { createHash, validatePassword } from '../utils.js';
 
 const LocalStrategy = local.Strategy; // UNA ESTRATEGIA LOCAL SIEMPRE SE BASA EN EL USERNAME + PASSWORD
@@ -13,7 +12,7 @@ const initializePassportStrategies = () => {
         new LocalStrategy({ passReqToCallback: true, usernameField: 'email' },
         async (req, email, password, done) => {
             try {
-                const { first_name, last_name } = req.body;
+                const { first_name, last_name, age} = req.body;
                 //Número 1! Corrobora si el usuario ya existe.
                 const exists = await userModel.findOne({ email });
                 //done lo que quiere hacer es DEVOLVERTE un usuario en req.user;
@@ -26,6 +25,7 @@ const initializePassportStrategies = () => {
                     first_name,
                     last_name,
                     email,
+                    age,
                     password: hashedPassword,
                 };
                 const result = await userModel.create(user);
@@ -47,7 +47,7 @@ const initializePassportStrategies = () => {
                     id: 0,
                     name: `Admin`,
                     role: 'admin',
-                    email: '...',
+                    email: 'adminCoder@coder.com',
                 };
                 return done(null, user);
             }

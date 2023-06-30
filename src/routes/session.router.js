@@ -4,12 +4,11 @@ import userModel from "../dao/mongo/models/users.js";
 import cartManager from "../dao/mongo/Managers/cartManager.js";
 import { createHash, validatePassword } from "../utils.js";
 
-// const cartManager = new CartManager();
 const router = Router();
 
 router.post('/register',
     passport.authenticate('register',{failureRedirect:'/api/sessions/registerFail', failureMessage:true}),async(req,res)=>{
-    // const cart = await cartManager.createCart();
+    // cart = await cartManager.createCart();
     // user.cart = cart._id;
     res.send({status:"success",message:"Registered"});
 });
