@@ -77,4 +77,14 @@ router.post("/logout", (req, res) => {
     });
 });
 
+router.get('/current', (req, res) => {
+    try {
+        const user = req.session.user;
+        res.send({ status: "success", payload: user });
+
+    } catch (error) {
+        return res.send(error);
+    }
+});
+
 export default router;

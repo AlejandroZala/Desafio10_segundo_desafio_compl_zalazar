@@ -48,12 +48,13 @@ const initializePassportStrategies = () => {
                     name: `Admin`,
                     role: 'admin',
                     email: 'adminCoder@coder.com',
+                    age: 50,
                 };
                 return done(null, user);
             }
             let user;
             //Número 1!!!!! buscar al usuario, ¿existe?
-            user = await userModel.findOne({ email }); //Sólo busco por mail
+            user = await userModel.findOne({ email }); //Sólo busco por email
             if (!user) 
                 return done(null, false, { message: 'Credenciales incorrectas' });
 
@@ -67,6 +68,7 @@ const initializePassportStrategies = () => {
                     id: user._id,
                     name: `${user.first_name} ${user.last_name}`,
                     email: user.email,
+                    age: user.age,
                     role: user.role,
                 };
                 return done(null, user);
