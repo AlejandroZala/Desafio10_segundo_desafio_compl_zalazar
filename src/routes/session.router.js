@@ -4,6 +4,7 @@ import userModel from "../dao/mongo/models/users.js";
 import cartManager from "../dao/mongo/Managers/cartManager.js";
 import { createHash, validatePassword } from "../utils.js";
 
+// const cartManager = new CartManager();
 const router = Router();
 
 router.post('/register',
