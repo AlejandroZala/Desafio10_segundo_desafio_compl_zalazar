@@ -5,9 +5,14 @@ const productManager = new ProductManager();
 
 export default class CartManager {
 
-    createCart = (cart) => {
-        return cartModel.create(cart);
-    };
+  getCartBy = params => cartModel.findOne(params).lean();
+  createCart = () => cartModel.create({products:[]});
+  updateCart = (id,cart) => cartModel.findByIdAndUpdate(id, {$set:cart});
+
+
+    // createCart = (cart) => {
+    //     return cartModel.create(cart);
+    // };
     getCarts = (params) =>{
         return cartModel.find(params).lean();
     }

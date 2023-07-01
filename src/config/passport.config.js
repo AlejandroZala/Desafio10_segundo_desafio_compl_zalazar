@@ -2,6 +2,8 @@ import passport from 'passport';
 import local from 'passport-local';
 import GithubStrategy from 'passport-github2';
 import userModel from '../dao/mongo/models/users.js';
+import { cartsService } from '../dao/mongo/Managers/index.js';
+
 import cartManager from "../dao/mongo/Managers/cartManager.js";
 
 import { createHash, validatePassword } from '../utils.js';
@@ -30,9 +32,10 @@ const initializePassportStrategies = () => {
                     age,
                     password: hashedPassword,
                 };
+                const cart = await cartsService.createCart();
+                user.cart = cart._id;
                 const result = await userModel.create(user);
-                // const cart = await cartManager.createCart();
-                // user.cart = cart._id;
+
                 //Si todo salió bien, Ahí es cuando done debe finalizar bien.
                 done(null, result);
             } catch (error) {
@@ -97,6 +100,8 @@ const initializePassportStrategies = () => {
                         email: emailGitHub,
                         password: ""
                     };
+                    const cart = await cartsService.createCart();
+                    newUser.cart = cart._id;
                     const result = await userModel.create(newUser);
                     return done(null, result);
                 }
