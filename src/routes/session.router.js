@@ -8,7 +8,8 @@ const router = Router();
 
 router.post('/register',
     passport.authenticate('register',{failureRedirect:'/api/sessions/registerFail', failureMessage:true}),async(req,res)=>{
-    // cart = await cartManager.createCart();
+    // const user =req.session.user;
+    // const cart = await cartManager.createCart();
     // user.cart = cart._id;
     res.send({status:"success",message:"Registered"});
 });

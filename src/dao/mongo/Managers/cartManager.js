@@ -5,15 +5,15 @@ const productManager = new ProductManager();
 
 export default class CartManager {
 
-    // createCart = () => {
-    //   return cartModel.create({products:[]});
-    // };
-    // updateCart = (id,cart) => {
-    //   return cartModel.findByIdAndUpdate(id, {$set:cart})
-    // };
-    createCart = (cart) => {
-        return cartModel.create(cart);
+    createCart = () => {
+      return cartModel.create({products:[]});
     };
+    updateCart = (id,cart) => {
+      return cartModel.findByIdAndUpdate(id, {$set:cart})
+    };
+    // createCart = (cart) => {
+    //     return cartModel.create(cart);
+    // };
     getCarts = (params) =>{
         return cartModel.find(params).lean();
     }

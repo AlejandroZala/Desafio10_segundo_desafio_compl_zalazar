@@ -2,6 +2,8 @@ import passport from 'passport';
 import local from 'passport-local';
 import GithubStrategy from 'passport-github2';
 import userModel from '../dao/mongo/models/users.js';
+import cartManager from "../dao/mongo/Managers/cartManager.js";
+
 import { createHash, validatePassword } from '../utils.js';
 
 const LocalStrategy = local.Strategy; // UNA ESTRATEGIA LOCAL SIEMPRE SE BASA EN EL USERNAME + PASSWORD
@@ -29,6 +31,8 @@ const initializePassportStrategies = () => {
                     password: hashedPassword,
                 };
                 const result = await userModel.create(user);
+                const cart = await cartManager.createCart();
+                user.cart = cart._id;
                 //Si todo salió bien, Ahí es cuando done debe finalizar bien.
                 done(null, result);
             } catch (error) {
