@@ -31,8 +31,8 @@ const initializePassportStrategies = () => {
                     password: hashedPassword,
                 };
                 const result = await userModel.create(user);
-                const cart = await cartManager.createCart();
-                user.cart = cart._id;
+                // const cart = await cartManager.createCart();
+                // user.cart = cart._id;
                 //Si todo salió bien, Ahí es cuando done debe finalizar bien.
                 done(null, result);
             } catch (error) {
