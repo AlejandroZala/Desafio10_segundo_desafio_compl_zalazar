@@ -1,7 +1,7 @@
 Si hago un link a http://localhost:8080/ => va a /login
 
 Si no esta registrado => ir a /register
-    -Al completar el formulario se crea el user con password hasheada y se guarda en MongoDB
+    -Al completar el formulario se crea el user con sus datos, un cart vacío, la password hasheada y se guarda en MongoDB
     -Luego redirije a Loguin con email y contraseña (con opción a restablecer contraseña) o con Github
     -Una vez logueado se inicia session => va a vista de todos los productos con saludo de bienvenida al usuario y opción de Logout
     -/profile muestra una vista con los datos del user logueado correctamente
