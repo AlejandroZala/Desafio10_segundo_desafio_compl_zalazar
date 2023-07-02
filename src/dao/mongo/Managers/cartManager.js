@@ -1,14 +1,9 @@
 import cartModel from "../models/carts.js";
-import ProductManager from "./productManager.js";
-
-const productManager = new ProductManager();
 
 export default class CartManager {
 
-  getCartBy = params => cartModel.findOne(params).lean();
   createCart = () => cartModel.create({products:[]});
   updateCart = (id,cart) => cartModel.findByIdAndUpdate(id, {$set:cart});
-
 
     // createCart = (cart) => {
     //     return cartModel.create(cart);
