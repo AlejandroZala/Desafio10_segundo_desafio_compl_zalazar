@@ -3,9 +3,6 @@ import local from 'passport-local';
 import GithubStrategy from 'passport-github2';
 import userModel from '../dao/mongo/models/users.js';
 import { cartsService } from '../dao/mongo/Managers/index.js';
-
-import cartManager from "../dao/mongo/Managers/cartManager.js";
-
 import { createHash, validatePassword } from '../utils.js';
 
 const LocalStrategy = local.Strategy; // UNA ESTRATEGIA LOCAL SIEMPRE SE BASA EN EL USERNAME + PASSWORD
